@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})
+Route::get('/dashboard', [ArticleController::class, 'allArticles'])
     ->middleware('auth')
     ->name('dashboard');
+
+Route::resource('articles', ArticleController::class)->middleware('auth');
 
 require __DIR__.'/auth.php';
