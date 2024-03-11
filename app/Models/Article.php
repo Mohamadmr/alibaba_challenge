@@ -23,4 +23,17 @@ class Article extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function isDraft(): bool
+    {
+        return $this->publication_status === ArticlePublishTypeEnum::draft;
+    }
+
+    public function publish(): self
+    {
+        $this->publication_status = ArticlePublishTypeEnum::published;
+        $this->save();
+
+        return $this;
+    }
 }

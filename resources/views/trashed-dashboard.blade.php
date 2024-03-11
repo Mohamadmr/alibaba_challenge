@@ -1,14 +1,5 @@
 <x-app-layout>
     <x-slot name="header">
-        @if(auth()->user()->is_admin)
-            <x-nav-link href="{{route('articles.trashed')}}">
-                {{ __('Trashed articles') }}
-            </x-nav-link>
-        @else
-            <x-nav-link href="{{route('articles.index')}}">
-                {{ __('My articles') }}
-            </x-nav-link>
-        @endif
     </x-slot>
 
     <div class="py-12">
@@ -41,20 +32,12 @@
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{$article->content}}</td>
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{$article->author->name}}</td>
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                                        <x-responsive-nav-link href="{{route('articles.show', $article->id)}}">show
+                                        <x-responsive-nav-link href="{{route('articles.admin.show', $article->id)}}">show
                                         </x-responsive-nav-link>
-                                        @if($article->isDraft())
-                                            <form action="{{route('article.publish', $article->id)}}" method="post">
-                                                @csrf
-                                                <x-secondary-button type="submit" class="mb-4">publish
-                                                </x-secondary-button>
-                                            </form>
-                                        @endif
-                                        <form action="{{route('articles.destroy', $article->id)}}" method="post">
+                                        <form action="{{route('articles.restore', $article->id)}}" method="post">
                                             @csrf
-                                            @method('DELETE')
-                                            <x-danger-button class="mb-4">delete
-                                            </x-danger-button>
+                                            <x-secondary-button type="submit" class="mb-4">restore
+                                            </x-secondary-button>
                                         </form>
                                     </td>
                                 </tr>

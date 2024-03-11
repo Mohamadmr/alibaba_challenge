@@ -20,7 +20,9 @@ class ArticleController extends Controller
     {
         $this->authorize('viewAny', Article::class);
 
-        return view('dashboard')->with(['articles' => $this->repository->getAll()]);
+        $articles = auth()->user()->is_admin ? $this->repository->getAllArticleForAdmin() : $this->repository->getAll();
+
+        return view('dashboard')->with(['articles' => $articles]);
     }
 
     public function index(Request $request): View
