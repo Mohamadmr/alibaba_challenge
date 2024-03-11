@@ -40,4 +40,14 @@ class ArticlePolicy
     {
         return $user->is_admin;
     }
+
+    public function trashed(User $user): bool
+    {
+        return $user->is_admin;
+    }
+
+    public function publish(User $user): bool
+    {
+        return $user->is_admin;
+    }
 }
