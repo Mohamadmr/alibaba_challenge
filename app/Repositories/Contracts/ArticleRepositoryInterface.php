@@ -17,4 +17,12 @@ interface ArticleRepositoryInterface
     public function update(array $inputs, Article $article): Article;
 
     public function delete(Article $article): void;
+
+    public function getAllArticleForAdmin(): LengthAwarePaginator|array;
+
+    public function trashed(): LengthAwarePaginator|array;
+
+    public function restore(Article $article): Article;
+
+    public function publish(Article $article): Article;
 }

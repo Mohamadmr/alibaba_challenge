@@ -40,4 +40,29 @@ class ArticleRepository implements ArticleRepositoryInterface
     {
         $article->delete();
     }
+
+    public function getAllArticleForAdmin(): LengthAwarePaginator|array
+    {
+        return Article::with('author')
+            ->paginate(self::PER_PAGE);
+    }
+
+    public function trashed(): LengthAwarePaginator|array
+    {
+        return Article::with('author')
+            ->onlyTrashed()
+            ->paginate(self::PER_PAGE);
+    }
+
+    public function restore(Article $article): Article
+    {
+        $article->restore();
+
+        return $article->fresh();
+    }
+
+    public function publish(Article $article): Article
+    {
+        return $article->publish()->fresh();
+    }
 }
