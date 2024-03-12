@@ -50,12 +50,14 @@
                                                 </x-secondary-button>
                                             </form>
                                         @endif
-                                        <form action="{{route('articles.destroy', $article->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-danger-button class="mb-4">delete
-                                            </x-danger-button>
-                                        </form>
+                                        @if(auth()->user()->is_admin)
+                                            <form action="{{route('articles.destroy', $article->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-danger-button class="mb-4">delete
+                                                </x-danger-button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -21,6 +21,11 @@ class ArticlePolicy
         return Auth::check();
     }
 
+    public function edit(User $user, Article $article): bool
+    {
+        return $article->author()->is($user);
+    }
+
     public function update(User $user, Article $article): bool
     {
         return $article->author()->is($user);

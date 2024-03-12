@@ -50,29 +50,30 @@
                                         <x-responsive-nav-link href="{{route('articles.edit', $article->id)}}">edit
                                         </x-responsive-nav-link>
                                     @endif
-                                    @if($article->isDraft())
-                                        <form action="{{route('article.publish', $article->id)}}" method="post">
-                                            @csrf
-                                            <x-secondary-button type="submit" class="mb-4">publish
-                                            </x-secondary-button>
-                                        </form>
-                                    @endif
-                                    @if(is_null($article->deleted_at))
-                                        <form action="{{route('articles.destroy', $article->id)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-danger-button class="mb-4">delete
-                                            </x-danger-button>
-                                        </form>
-                                    @else
+                                    @if(auth()->user()->is_admin)
+                                            @if($article->isDraft())
+                                                <form action="{{route('article.publish', $article->id)}}" method="post">
+                                                    @csrf
+                                                    <x-secondary-button type="submit" class="mb-4">publish
+                                                    </x-secondary-button>
+                                                </form>
+                                            @endif
+                                            @if(is_null($article->deleted_at))
+                                                <form action="{{route('articles.destroy', $article->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <x-danger-button class="mb-4">delete
+                                                    </x-danger-button>
+                                                </form>
+                                            @else
 
-                                        <form action="{{route('articles.restore', $article->id)}}" method="post">
-                                            @csrf
-                                            <x-secondary-button type="submit" class="mb-4">restore
-                                            </x-secondary-button>
-                                        </form>
+                                                <form action="{{route('articles.restore', $article->id)}}" method="post">
+                                                    @csrf
+                                                    <x-secondary-button type="submit" class="mb-4">restore
+                                                    </x-secondary-button>
+                                                </form>
+                                            @endif
                                     @endif
-
                                 </td>
                             </tr>
                             </tbody>
