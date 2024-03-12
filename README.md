@@ -14,7 +14,7 @@
   <p align="center">
     alibaba challenge project
     <br />
-    <img src="https://cdn.alibaba.ir/h2/desktop/assets/images/shawl_logotype-d6b14ca0.svg" alt="shab.co" width="80" height="80">
+      <img src="https://cdn.alibaba.ir/h2/desktop/assets/images/shawl_logotype-d6b14ca0.svg" alt="alibaba.co" width="80" height="80">
     <br />
     <br />
     <a href="https://github.com/Mohamadmr/alibaba_challenge/issues">Report Bug</a>
@@ -63,7 +63,7 @@ If you are using windows also need:
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Mohamadmr/marketplace_shab_challenge.git
+   git clone https://github.com/Mohamadmr/alibaba_challenge.git
    ```
 2. Install Composer packages
    ```sh
