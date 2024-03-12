@@ -51,7 +51,7 @@ class ArticleController extends Controller
 
     public function edit(Article $article): View
     {
-        $this->authorize('view', Article::class);
+        $this->authorize('edit', $article);
 
         return view('article.edit')->with(['article' => $article]);
     }
